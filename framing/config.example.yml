@@ -1,0 +1,37 @@
+# Example config for the `framing` skill. Copy to config.yml and adjust.
+# Everything here is OPTIONAL — with no config.yml the skill discovers locations
+# and falls back to grep/read. Override only what your project needs.
+
+design_inputs:
+  decision: ["docs/adr/**", "docs/rfc/**", "**/ADR*.md", "**/RFC*.md"]
+  spec:     ["**/PRD.md", "**/SPEC.md", "**/spec.md"]
+  tasks:    ["**/issues/*.md", "**/tickets/*.md"]
+
+# Where to write the deliverable. <feature> and <design-dir> are substituted.
+output: "<design-dir>/FRAMING_<feature>.md"
+
+# "auto"  -> use a code-graph MCP if one is connected, else grep/read
+# "codegraph" / "<mcp-name>" -> require that index
+# "none"  -> always use native grep/read
+code_index: "auto"
+
+# Files the skill reads to learn YOUR conventions (stack, naming, patterns).
+conventions: ["CLAUDE.md", "CONTRIBUTING.md", "docs/architecture/**", "docs/**"]
+
+language: "en"
+
+# After writing, fold new decisions/TODOs back into the issues: ask | always | never
+propagate_to_tasks: "ask"
+
+# Optional house-style reminders injected when writing the deliverable, so the
+# design doc matches your project's conventions. Free text — one rule per line.
+# Replace the examples below with your own (these span several stacks for
+# illustration; keep only what applies to you):
+house_notes: |
+  - DB migrations: id format YYYYMMDD_NNNN, down_revision = current head, never reuse an id.
+  - API: request/response models named *Request / *Response (or *In / *Out), one per endpoint.
+  - Background jobs go through the job registry/queue, never inline in a request handler.
+  - Frontend: design-system tokens only (no raw hex / no ad-hoc colors).
+  - Aggregation = 1 endpoint + 1 query, never N round-trips / fan-out.
+  - Never add a new dependency without calling it out in the doc.
+  - Errors: use the shared error envelope; no bare 500s for expected failures.
