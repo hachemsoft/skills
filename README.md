@@ -35,13 +35,6 @@ Skills that support config ship a `config.example.yml`. Copy it to `config.yml`
 next to the skill and adjust. With no `config.yml`, the skill uses sane defaults.
 See each skill's own README.
 
-## Acknowledgments
-
-These skills are built in the spirit of — and learned a lot from —
-[Matt Pocock](https://github.com/mattpocock)'s excellent Claude Code skills
-collection. The interview/grilling, issue-tracker, and triage conventions that
-shaped this work trace back to his skills. Huge thanks to him for sharing them
-openly. 🙏
 
 ## License
 
