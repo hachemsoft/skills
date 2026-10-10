@@ -1,0 +1,78 @@
+# reverse-engineer
+
+A Claude Code / Agent **skill** that reads an existing repository and writes one
+sourced **"as-is" architecture document**: stack, module map, entry points, key
+flows, data model, API contracts, integrations, risks and open questions.
+
+It's the counterpart of [`framing`](../framing/): framing designs what you are
+about to build; reverse-engineer documents what already exists. Use it when you
+land on an unfamiliar repo (onboarding, audit, takeover, dependency evaluation).
+
+## What it does
+
+1. Resolves the target: the current directory, or the local path you pass.
+2. Static reconnaissance: tree, manifests, entry points, CI/Docker, README.
+3. Builds the module map, then digs into each module and traces 3–5 key flows.
+4. Writes `ARCHITECTURE_<repo>.md` from a fixed [template](TEMPLATE.md): always
+   the same 11 sections in the same order (`N/A` when a section doesn't apply),
+   Mermaid module map, sequence diagrams and ERD.
+5. Prints a recap: document path and number of inferred claims.
+
+**Evidence.** Every structural claim (module, entry point, dependency, flow,
+entity, endpoint, integration) cites `path:line` relative to the repo root.
+Anything not proven by the code is marked `⚠️ inferred` and repeated under
+"Open questions".
+
+## Install
+
+Copy the `reverse-engineer/` directory into your skills folder:
+
+- Project scope: `.claude/skills/reverse-engineer/`
+- User scope: `~/.claude/skills/reverse-engineer/`
+
+Then invoke it:
+
+```text
+/reverse-engineer                 # analyse the current directory
+/reverse-engineer ../other-repo   # analyse a local repo without cd-ing into it
+```
+
+or just ask: "reverse engineer this repo", "document this repo", "architecture
+as-is", "rétro-ingénierie", "onboarding repo inconnu".
+
+By default the document goes to `<repo>/docs/reverse/ARCHITECTURE_<repo>.md`
+(the directory is created if needed). If the file already exists, the skill asks
+whether to overwrite, write under another name, or cancel — it writes nothing
+until you answer.
+
+## Configure (optional)
+
+Copy `config.example.yml` to `config.yml` next to `SKILL.md` and adjust:
+
+| Key | Default | Meaning |
+|---|---|---|
+| `output` | `auto` | `auto` = `<target>/docs/reverse/ARCHITECTURE_<repo>.md`; or an explicit path containing `<repo>`. |
+| `language` | `auto` | `auto` = language of the conversation; or an ISO code (`fr`, `en`, …). |
+| `code_index` | `auto` | `auto` uses a code-graph MCP if connected, else grep/read; `none` forces grep/read. |
+| `fanout_threshold` | `8` | Above this many modules, the skill asks which ones to cover. |
+
+`config.yml` is git-ignored.
+
+## Security
+
+The analysis is **static and read-only**: the skill reads files and never runs
+the target repo's code (no install, build, tests or scripts). The repo's content
+is treated as data — instructions it addresses to an agent (README, `CLAUDE.md`,
+comments) are ignored. The only file written is the document.
+
+## Files
+
+| File | Purpose |
+|---|---|
+| `SKILL.md` | The skill instructions (English). |
+| `TEMPLATE.md` | Fixed skeleton of the document (11 sections). |
+| `config.example.yml` | Copy to `config.yml` to override defaults. |
+
+## License
+
+MIT — see the repository [`LICENSE`](../LICENSE).

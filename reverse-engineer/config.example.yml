@@ -1,0 +1,26 @@
+# Example config for the `reverse-engineer` skill. Copy to config.yml and adjust.
+# Everything here is OPTIONAL — with no config.yml (or a missing key) the skill
+# uses the defaults shown below.
+#
+# <repo> = name of the target repo: the last segment of its `origin` remote URL
+# (without .git) when it has one, else the last segment of its path.
+
+# Where to write the document.
+# "auto" -> <target>/docs/reverse/ARCHITECTURE_<repo>.md (inside the analysed repo)
+# or an explicit path containing <repo>, e.g. "~/notes/arch/ARCHITECTURE_<repo>.md".
+# A relative path is resolved against the directory you run the skill from.
+output: "auto"
+
+# Language of the document (headings included).
+# "auto" -> the language of the conversation; else an ISO code: "fr", "en", …
+language: "auto"
+
+# Code index used during the analysis.
+# "auto"  -> use a code-graph MCP if one is connected, else grep/read
+# "codegraph" / "<mcp-name>" -> use that index
+# "none"  -> always use native grep/read
+code_index: "auto"
+
+# Number of modules above which the skill asks which modules to cover
+# before analysing them.
+fanout_threshold: 8

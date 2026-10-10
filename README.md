@@ -11,6 +11,7 @@ folder and invoke by its bare name (no namespace prefix).
 | [`framing`](framing/) | Consolidate an existing ADR/PRD/issues into one technical design (framing) document — sequence diagrams, data model, API contracts, estimation, feasibility-checked. | `/framing` |
 | [`jira-get-ticket`](jira-get-ticket/) | Fetch a Jira issue via the Atlassian MCP server and turn it into an actionable fix/dev plan. Requires the Atlassian remote MCP (`https://mcp.atlassian.com/v1/sse`) in `.mcp.json`. | `/jira-get-ticket PROJ-123` |
 | [`loom-transcribe-fixplan`](loom-transcribe-fixplan/) | Download a Loom video with yt-dlp, transcribe it locally with whisper.cpp, then summarize the need and propose a fix/dev plan. Requires `yt-dlp`, `ffmpeg`, `whisper-cli`. | `/loom-transcribe-fixplan <loom-url>` |
+| [`reverse-engineer`](reverse-engineer/) | Reverse-engineer an existing repo into one sourced "as-is" architecture document — module map, key flows (Mermaid), data model, API, integrations, risks; every claim cites `path:line`, unproven ones are flagged as inferred. | `/reverse-engineer [path\|url]` |
 
 ## Install
 
