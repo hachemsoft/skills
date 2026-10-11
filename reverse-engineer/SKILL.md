@@ -63,7 +63,10 @@ Read, never execute. Build a picture of the repo from:
 
 **Tooling — resolve `code_index` once, here:**
 - `auto` → if a code-graph MCP is connected (tools that search symbols and
-  return callers/callees, e.g. `codegraph_*`), use it; else grep/read.
+  return callers/callees, e.g. `codegraph_*`), check with one call (its status
+  tool, or a probe search) that it covers `<target>` (pass the target path if
+  the tool accepts one); if so, use it. If none is connected, or it does not
+  cover `<target>`, use grep/read.
 - `codegraph` or `<mcp-name>` → use that MCP. If it is not connected (or
   reports the target is not indexed), say so in one line and fall back to
   grep/read.
