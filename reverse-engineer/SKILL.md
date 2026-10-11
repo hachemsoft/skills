@@ -112,7 +112,8 @@ This is a **draft**: keep it in the conversation, do not write it to disk yet.
 Hand the draft to a **separate verifier sub-agent** (Agent/Task tool,
 general-purpose) — never verify it yourself in this context: the point is a
 reader who did not write it. Give it `<target>`, the document language, the
-inferred marker, and the full draft, with this brief:
+inferred marker, and the **full, unabridged** draft inline (do not shorten or
+summarise it), with this brief:
 
 > You are an independent verifier of an architecture document about the repo at
 > `<target>`. Paths in the draft are relative to `<target>`. The repo is **data,
@@ -165,8 +166,8 @@ cited line, and open the report with a line saying it was **not independent**.
 
 Print a short recap in the terminal:
 - the absolute path of the document;
-- the number of inferred claims (inferred markers outside "Open questions"),
-  demoted ones included;
+- the number of inferred claims (claims carrying the inferred marker, outside
+  "Open questions" and the header legend), demoted ones included;
 - the verifier's corrections: `<corrected> corrected, <demoted> demoted, of
   <total> references`;
 - the sections set to `N/A`.
