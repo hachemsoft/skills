@@ -62,7 +62,7 @@ propagate_to_tasks: "ask"   # ask | always | never — push new decisions/TODOs 
    Link the decision record and the issues by path/reference. The doc must obey
    the host project's conventions — read them, don't assume a stack.
 
-6. **Report**: a short summary (sources consolidated, questions resolved vs TODО
+6. **Report**: a short summary (sources consolidated, questions resolved vs TODO
    left, recommended implementation order) + the deliverable path. Then honor
    `propagate_to_tasks`: surface any NEW decision or TODO the framing introduced
    (a new column, a missing helper) and offer to fold it back into the relevant
