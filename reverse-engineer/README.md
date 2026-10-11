@@ -13,10 +13,14 @@ land on an unfamiliar repo (onboarding, audit, takeover, dependency evaluation).
 1. Resolves the target: the current directory, or the local path you pass.
 2. Static reconnaissance: tree, manifests, entry points, CI/Docker, README.
 3. Builds the module map, then digs into each module and traces 3–5 key flows.
+   On a big repo (more than `fanout_threshold` modules, 8 by default) it first
+   asks which modules to cover, then analyses each retained module in its own
+   sub-agent and synthesises the findings. The document states the scope.
 4. Writes `ARCHITECTURE_<repo>.md` from a fixed [template](TEMPLATE.md): always
    the same 11 sections in the same order (`N/A` when a section doesn't apply),
    Mermaid module map, sequence diagrams and ERD.
-5. Prints a recap: document path and number of inferred claims.
+5. Prints a recap: document path, number of inferred claims, scope and code
+   index used.
 
 **Evidence.** Every structural claim (module, entry point, dependency, flow,
 entity, endpoint, integration) cites `path:line` relative to the repo root.
@@ -54,7 +58,7 @@ Copy `config.example.yml` to `config.yml` next to `SKILL.md` and adjust:
 | `output` | `auto` | `auto` = `<target>/docs/reverse/ARCHITECTURE_<repo>.md`; or an explicit path containing `<repo>`. |
 | `language` | `auto` | `auto` = language of the conversation; or an ISO code (`fr`, `en`, …). |
 | `code_index` | `auto` | `auto` uses a code-graph MCP if connected, else grep/read; `none` forces grep/read. |
-| `fanout_threshold` | `8` | Above this many modules, the skill asks which ones to cover. |
+| `fanout_threshold` | `8` | Above this many modules, the skill asks which ones to cover, then runs one sub-agent per retained module. |
 
 `config.yml` is git-ignored.
 

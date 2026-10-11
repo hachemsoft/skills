@@ -2,6 +2,8 @@
 
 Generated: <date> · Target: `<target>` · Commit: `<short sha or "not a git repo">`
 
+Scope: <"whole repository" | retained modules: a, b, c — excluded: d, e>
+
 > Describes what the code **does today**, from evidence only. Every structural
 > claim cites `path:line` relative to the repo root. Claims marked
 > `⚠️ inferred` are not proven and are listed in "Open questions".
