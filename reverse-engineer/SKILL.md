@@ -81,7 +81,9 @@ recap.
 ## 3. Module map
 
 Identify the modules: the units a newcomer must know (packages, top-level
-directories, services, apps, skills…). For each one note its purpose, its entry
+directories, services, apps, skills…). Sub-folders of a module belong to it,
+and the repo root's own files (README, LICENSE, CI) are not a module: this is
+the count compared with `fanout_threshold`. For each one note its purpose, its entry
 file and its dependencies on other modules, each with `path:line` evidence.
 
 ## 4. Dig into each module
