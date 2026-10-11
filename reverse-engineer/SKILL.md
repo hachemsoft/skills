@@ -125,6 +125,11 @@ launch no sub-agent. The scope is the whole repository.
    across modules; read the few extra lines you need to link one module to the
    next in a flow. An inferred finding stays inferred. Sources from every
    sub-agent go into "Sources read".
+4. **Same document, same checks.** The synthesised document is not a lighter
+   variant: steps 5 to 7 apply to it unchanged — the fixed template, the
+   evidence and inferred-marker rules (a sub-agent's citation counts as read
+   only because that sub-agent read it), the Scope line, and any verification
+   pass, which covers every citation whichever agent produced it.
 
 If you cannot launch sub-agents in this environment, say so in one line and dig
 into the retained modules yourself, one after the other. The scope question
