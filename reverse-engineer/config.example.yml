@@ -2,13 +2,17 @@
 # Everything here is OPTIONAL — with no config.yml (or a missing key) the skill
 # uses the defaults shown below.
 #
-# <repo> = name of the target repo: the last segment of its `origin` remote URL
-# (without .git) when it has one, else the last segment of its path.
+# <repo> = name of the target repo. Local repo: the last segment of its `origin`
+# remote URL (without .git) when it has one, else the last segment of its path.
+# Git URL: the last segment of the URL, without .git.
 
 # Where to write the document.
-# "auto" -> <target>/docs/reverse/ARCHITECTURE_<repo>.md (inside the analysed repo)
+# "auto" -> local repo: <target>/docs/reverse/ARCHITECTURE_<repo>.md (inside the analysed repo)
+#           git URL:    ./reverse/ARCHITECTURE_<repo>.md (in the directory you run the
+#                       skill from — never in /tmp, where the clone lives)
 # or an explicit path containing <repo>, e.g. "~/notes/arch/ARCHITECTURE_<repo>.md".
 # A relative path is resolved against the directory you run the skill from.
+# The document is never written under /tmp.
 output: "auto"
 
 # Language of the document (headings included).
