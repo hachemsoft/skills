@@ -91,9 +91,11 @@ fanout_threshold: 8   # module count above which scope is asked before analysis
 
 `<target>` is the absolute path of the repo. `<repo>` is its name:
 the last segment of the `origin` remote URL without `.git` if `<target>` is a git
-repo with an `origin` remote (read it from `<target>/.git/config`, or from the
-file named by `<target>/.git` in a worktree, rather than running `git` there) (so a worktree or a renamed checkout keeps the
-project's name), else the last segment of `<target>`.
+repo with an `origin` remote (so a worktree or a renamed checkout keeps the
+project's name), else the last segment of `<target>`. Read the remote from
+`<target>/.git/config` as a file (in a worktree, `<target>/.git` is a file
+naming the git dir; follow it to the common `config`) rather than running `git`
+there.
 
 Resolve the **output path** now:
 - `output: auto` → `<target>/docs/reverse/ARCHITECTURE_<repo>.md`.
