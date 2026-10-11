@@ -2,7 +2,7 @@
 set -euo pipefail
 
 url="${1:-}"
-out_dir="${2:-tmp/loom}"
+out_dir="${2:-/tmp/loom}"
 
 if [[ -z "${url}" ]]; then
   echo "Usage: loom_download.sh <loom_url> [out_dir]" >&2
