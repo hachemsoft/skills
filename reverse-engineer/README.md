@@ -16,7 +16,13 @@ land on an unfamiliar repo (onboarding, audit, takeover, dependency evaluation).
 4. Writes `ARCHITECTURE_<repo>.md` from a fixed [template](TEMPLATE.md): always
    the same 11 sections in the same order (`N/A` when a section doesn't apply),
    Mermaid module map, sequence diagrams and ERD.
-5. Prints a recap: document path and number of inferred claims.
+5. Hands the draft to an independent **verifier sub-agent** that checks every
+   `path:line` (file exists, line exists, line supports the claim). Wrong
+   references are corrected, or the claim is demoted to `⚠️ inferred` and added
+   to "Open questions". Its report (verified / corrected / demoted, plus the
+   list of corrections) is appended to the document.
+6. Writes the file and prints a recap: document path, number of inferred claims
+   and number of verifier corrections.
 
 **Evidence.** Every structural claim (module, entry point, dependency, flow,
 entity, endpoint, integration) cites `path:line` relative to the repo root.

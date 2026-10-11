@@ -110,4 +110,14 @@ Each command the user approved, verbatim, or "none" (static analysis only).
 
 ### Verification report
 
-…
+Independent verifier sub-agent, run on the draft before writing.
+
+| Verified | Corrected | Demoted | Total |
+|---|---|---|---|
+| n | n | n | n |
+
+| # | Section | Claim (short) | Old reference | Outcome | New reference | Why |
+|---|---|---|---|---|---|---|
+| 1 | … | … | `path:line` | corrected / demoted | `path:line` / — | … |
+
+(or "none" when nothing was corrected or demoted)
