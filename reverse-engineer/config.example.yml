@@ -21,10 +21,12 @@ language: "auto"
 
 # Code index used during the analysis.
 # "auto"  -> use a code-graph MCP if one is connected, else grep/read
-# "codegraph" / "<mcp-name>" -> use that index
+# "codegraph" / "<mcp-name>" -> use that index (falls back to grep/read, with a
+#            one-line notice, if it is not connected)
 # "none"  -> always use native grep/read
 code_index: "auto"
 
-# Number of modules above which the skill asks which modules to cover
-# before analysing them.
+# Number of modules above which the skill asks which modules to cover, then
+# analyses each retained module in its own sub-agent and synthesises the
+# findings. At or below it, the analysis is direct: no question, no sub-agents.
 fanout_threshold: 8

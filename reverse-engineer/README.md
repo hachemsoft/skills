@@ -15,6 +15,9 @@ land on an unfamiliar repo (onboarding, audit, takeover, dependency evaluation).
    `/tmp/reverse/<repo>`, or updated in place if that clone already exists.
 2. Static reconnaissance: tree, manifests, entry points, CI/Docker, README.
 3. Builds the module map, then digs into each module and traces 3–5 key flows.
+   On a big repo (more than `fanout_threshold` modules, 8 by default) it first
+   asks which modules to cover, then analyses each retained module in its own
+   sub-agent and synthesises the findings. The document states the scope.
 4. Writes `ARCHITECTURE_<repo>.md` from a fixed [template](TEMPLATE.md): always
    the same 11 sections in the same order (`N/A` when a section doesn't apply),
    Mermaid module map, sequence diagrams and ERD.
@@ -24,7 +27,8 @@ land on an unfamiliar repo (onboarding, audit, takeover, dependency evaluation).
    to "Open questions". Its report (verified / corrected / demoted, plus the
    list of corrections) is appended to the document.
 6. Writes the file and prints a recap: document path, clone path (URL mode),
-   number of inferred claims and number of verifier corrections.
+   number of inferred claims, number of verifier corrections, scope and code
+   index used.
 
 **Evidence.** Every structural claim (module, entry point, dependency, flow,
 entity, endpoint, integration) cites `path:line` relative to the repo root.
@@ -79,7 +83,7 @@ Copy `config.example.yml` to `config.yml` next to `SKILL.md` and adjust:
 | `output` | `auto` | `auto` = `<target>/docs/reverse/ARCHITECTURE_<repo>.md` (local) or `./reverse/ARCHITECTURE_<repo>.md` (git URL); or an explicit path containing `<repo>`. Never under `/tmp`. |
 | `language` | `auto` | `auto` = language of the conversation; or an ISO code (`fr`, `en`, …). |
 | `code_index` | `auto` | `auto` uses a code-graph MCP if connected, else grep/read; `none` forces grep/read. |
-| `fanout_threshold` | `8` | Above this many modules, the skill asks which ones to cover. |
+| `fanout_threshold` | `8` | Above this many modules, the skill asks which ones to cover, then runs one sub-agent per retained module. |
 
 `config.yml` is git-ignored.
 
